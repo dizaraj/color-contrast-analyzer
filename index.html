@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functional - Responsive Color Contrast Analyzer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Basic body styles and font */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Visually hide the color input but keep it functional */
+        .color-input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+            pointer-events: none;
+        }
+
+        /* Add pointer cursor to color swatch labels */
+        .color-swatch-label {
+            cursor: pointer;
+        }
+
+        /* Styles for the active tab */
+        .tab-btn.active {
+            border-color: #4f46e5;
+            color: #4f46e5;
+            background-color: #eef2ff;
+        }
+
+        /* Hide inactive tab panels */
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50">
+
+    <div class="container mx-auto max-w-3xl my-8 p-6 sm:p-8 bg-white rounded-2xl shadow-lg">
+
+        <div class="space-y-6">
+            <header class="flex items-center justify-between pb-4 border-b border-gray-200">
+                <div class="flex items-center space-x-3">
+                    <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01">
+                        </path>
+                    </svg>
+                    <h1 class="text-xl font-semibold text-gray-800">Color Contrast Analyzer</h1>
+                </div>
+            </header>
+
+            <nav class="flex border-b border-gray-200">
+                <button id="analyzer-tab-btn"
+                    class="tab-btn active -mb-px px-4 py-2 text-sm font-medium text-gray-600 border-b-2 border-transparent hover:text-indigo-600 hover:border-gray-300 focus:outline-none">Analyzer</button>
+                <button id="about-tab-btn"
+                    class="tab-btn px-4 py-2 text-sm font-medium text-gray-600 border-b-2 border-transparent hover:text-indigo-600 hover:border-gray-300 focus:outline-none">About</button>
+            </nav>
+
+            <div>
+                <div id="analyzer-panel" class="tab-panel active">
+                    <main class="space-y-6 py-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-start">
+                            <div class="space-y-2">
+                                <label class="text-sm font-medium text-gray-600">Foreground</label>
+                                <div class="flex items-center space-x-2">
+                                    <label for="fg-color-picker" class="color-swatch-label">
+                                        <div id="fg-swatch"
+                                            class="w-10 h-10 bg-gray-700 rounded-md border border-gray-300">
+                                        </div>
+                                        <input type="color" id="fg-color-picker" class="color-input">
+                                    </label>
+                                    <input type="text" id="fg-hex-input" value="#333333"
+                                        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                </div>
+                                <button id="fg-picker-btn"
+                                    class="w-full flex items-center justify-center space-x-2 p-2 bg-white border border-gray-300 rounded-md hover:bg-gray-100 text-sm text-gray-600 transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-eyedropper" viewBox="0 0 16 16">
+                                        <path
+                                            d="M13.354.646a1.207 1.207 0 0 0-1.708 0L8.5 3.793l-.646-.647a.5.5 0 1 0-.708.708L8.293 5.5 7.146 6.646a.5.5 0 0 0 .708.708l1.147-1.147 1.146 1.147a.5.5 0 0 0 .708-.708L9.707 5.5l1.147-1.147a.5.5 0 0 0-.708-.708l-1.146 1.147-1.647-1.647a.5.5 0 1 0-.708.708l.647.646-4.207 4.207a.5.5 0 0 0 0 .708l.707.707a.5.5 0 0 0 .708 0l4.207-4.207.646.647a.5.5 0 0 0 .708-.708L11.707 5.5l.646-.647.647.646a.5.5 0 0 0 .708-.708l-.647-.646 1.793-1.793a1.207 1.207 0 0 0 0-1.708z" />
+                                        <path
+                                            d="m2.468 11.293 1.135 1.134a.5.5 0 0 1 0 .708l-2.268 2.268a.5.5 0 0 1-.708 0L0 14.835a.5.5 0 0 1 0-.707l2.268-2.268a.5.5 0 0 1 .708 0l-.56.56.56-.56z" />
+                                    </svg>
+                                    <span>Pick from page</span>
+                                </button>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="text-sm font-medium text-gray-600">Background</label>
+                                <div class="flex items-center space-x-2">
+                                    <label for="bg-color-picker" class="color-swatch-label">
+                                        <div id="bg-swatch"
+                                            class="w-10 h-10 bg-white rounded-md border border-gray-300">
+                                        </div>
+                                        <input type="color" id="bg-color-picker" value="#FFFFFF" class="color-input">
+                                    </label>
+                                    <input type="text" id="bg-hex-input" value="#FFFFFF"
+                                        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                </div>
+                                <button id="bg-picker-btn"
+                                    class="w-full flex items-center justify-center space-x-2 p-2 bg-white border border-gray-300 rounded-md hover:bg-gray-100 text-sm text-gray-600 transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-eyedropper" viewBox="0 0 16 16">
+                                        <path
+                                            d="M13.354.646a1.207 1.207 0 0 0-1.708 0L8.5 3.793l-.646-.647a.5.5 0 1 0-.708.708L8.293 5.5 7.146 6.646a.5.5 0 0 0 .708.708l1.147-1.147 1.146 1.147a.5.5 0 0 0 .708-.708L9.707 5.5l1.147-1.147a.5.5 0 0 0-.708-.708l-1.146 1.147-1.647-1.647a.5.5 0 1 0-.708.708l.647.646-4.207 4.207a.5.5 0 0 0 0 .708l.707.707a.5.5 0 0 0 .708 0l4.207-4.207.646.647a.5.5 0 0 0 .708-.708L11.707 5.5l.646-.647.647.646a.5.5 0 0 0 .708-.708l-.647-.646 1.793-1.793a1.207 1.207 0 0 0 0-1.708z" />
+                                        <path
+                                            d="m2.468 11.293 1.135 1.134a.5.5 0 0 1 0 .708l-2.268 2.268a.5.5 0 0 1-.708 0L0 14.835a.5.5 0 0 1 0-.707l2.268-2.268a.5.5 0 0 1 .708 0l-.56.56.56-.56z" />
+                                    </svg>
+                                    <span>Pick from page</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-center">
+                            <button id="swap-btn"
+                                class="p-2 bg-white border border-gray-300 rounded-full hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </main>
+
+                    <section class="p-4 sm:p-6 bg-slate-50 border border-gray-200 rounded-lg">
+                        <div class="text-center">
+                            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wider">Contrast Ratio</h3>
+                            <p id="contrast-ratio" class="text-5xl sm:text-6xl font-bold text-gray-800 mt-1">12.60:1</p>
+                        </div>
+
+                        <div class="mt-6 border-t border-gray-200 pt-6">
+                            <h4 class="text-center text-md font-semibold text-gray-700 mb-4">WCAG Compliance</h4>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between p-3 bg-white rounded-md border">
+                                    <span class="font-bold text-lg text-gray-700">AA</span>
+                                    <div class="flex items-center space-x-4 sm:space-x-6">
+                                        <div id="aa-normal-result" class="flex items-center space-x-2"></div>
+                                        <div id="aa-large-result" class="flex items-center space-x-2"></div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-white rounded-md border">
+                                    <span class="font-bold text-lg text-gray-700">AAA</span>
+                                    <div class="flex items-center space-x-4 sm:space-x-6">
+                                        <div id="aaa-normal-result" class="flex items-center space-x-2"></div>
+                                        <div id="aaa-large-result" class="flex items-center space-x-2"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div id="about-panel" class="tab-panel py-4">
+                    <div class="p-6 bg-slate-50 border border-gray-200 rounded-lg space-y-4">
+                        <h3 class="text-lg font-semibold text-gray-800">About the Developer</h3>
+                        <p class="text-base text-gray-600">
+                            This extension was created by <span class="font-semibold">Dizaraj Dey</span>, a web
+                            developer
+                            passionate about creating dynamic, interactive, and accessible web experiences.
+                        </p>
+                        <p class="text-base text-gray-600">
+                            He has experience with a variety of web technologies including HTML, CSS, JavaScript, and
+                            React, and is always eager to learn more.
+                        </p>
+                        <div>
+                            <a href="https://dizaraj.github.io/" target="_blank"
+                                class="inline-block mt-2 font-semibold text-indigo-600 hover:text-indigo-800 transition-colors">
+                                View Portfolio &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="text-center pt-6 border-t border-gray-200">
+                <a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html" target="_blank"
+                    class="text-sm text-indigo-600 hover:underline">Learn about WCAG Guidelines</a>
+            </footer>
+        </div>
+
+    </div>
+
+
+    <script>
+        // --- DOM Element References ---
+        const fgColorPicker = document.getElementById('fg-color-picker');
+        const fgHexInput = document.getElementById('fg-hex-input');
+        const fgSwatch = document.getElementById('fg-swatch');
+        const fgPickerBtn = document.getElementById('fg-picker-btn');
+
+        const bgColorPicker = document.getElementById('bg-color-picker');
+        const bgHexInput = document.getElementById('bg-hex-input');
+        const bgSwatch = document.getElementById('bg-swatch');
+        const bgPickerBtn = document.getElementById('bg-picker-btn');
+
+        const swapBtn = document.getElementById('swap-btn');
+        const contrastRatioEl = document.getElementById('contrast-ratio');
+
+        const aaNormalResultEl = document.getElementById('aa-normal-result');
+        const aaLargeResultEl = document.getElementById('aa-large-result');
+        const aaaNormalResultEl = document.getElementById('aaa-normal-result');
+        const aaaLargeResultEl = document.getElementById('aaa-large-result');
+
+        // Tab Elements
+        const analyzerTabBtn = document.getElementById('analyzer-tab-btn');
+        const aboutTabBtn = document.getElementById('about-tab-btn');
+        const analyzerPanel = document.getElementById('analyzer-panel');
+        const aboutPanel = document.getElementById('about-panel');
+        const tabBtns = [analyzerTabBtn, aboutTabBtn];
+        const tabPanels = [analyzerPanel, aboutPanel];
+
+        // --- Core Functions ---
+
+        /**
+         * Converts a hex color string to an RGB object.
+         * @param {string} hex - The hex color string (e.g., "#RRGGBB").
+         * @returns {{r: number, g: number, b: number}|null} - An object with r, g, b values or null if invalid.
+         */
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : null;
+        }
+
+        /**
+         * Calculates the relative luminance of an RGB color.
+         * @param {{r: number, g: number, b: number}} rgb - An object with r, g, b values.
+         * @returns {number} - The luminance value (0 to 1).
+         */
+        function getLuminance(rgb) {
+            const a = [rgb.r, rgb.g, rgb.b].map(function (v) {
+                v /= 255;
+                return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+            });
+            return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
+        }
+
+        /**
+         * Calculates the contrast ratio between two RGB colors.
+         * @param {{r: number, g: number, b: number}} rgb1
+         * @param {{r: number, g: number, b: number}} rgb2
+         * @returns {number} - The contrast ratio.
+         */
+        function getContrastRatio(rgb1, rgb2) {
+            const lum1 = getLuminance(rgb1);
+            const lum2 = getLuminance(rgb2);
+            const brightest = Math.max(lum1, lum2);
+            const darkest = Math.min(lum1, lum2);
+            return (brightest + 0.05) / (darkest + 0.05);
+        }
+
+        /**
+         * Generates the HTML for the pass/fail icon and text.
+         * @param {boolean} didPass - Whether the check passed.
+         * @param {string} text - The label for the check (e.g., "Normal").
+         * @returns {string} - The complete HTML string.
+         */
+        function createResultHtml(didPass, text) {
+        const passIcon = `<span class="text-green-500"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg></span>`;
+        const failIcon = `<span class="text-red-500"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg></span>`;
+        return `<span class="text-sm text-gray-600">${text}</span> ${didPass ? passIcon : failIcon}`;
+    }
+
+
+        /**
+         * The main function to update the entire UI based on the current colors.
+         */
+        function updateContrast() {
+            const fgHex = fgHexInput.value;
+            const bgHex = bgHexInput.value;
+
+            const fgRgb = hexToRgb(fgHex);
+            const bgRgb = hexToRgb(bgHex);
+
+            if (!fgRgb || !bgRgb) {
+                contrastRatioEl.textContent = 'Invalid';
+                // Clear results on invalid input
+                aaNormalResultEl.innerHTML = createResultHtml(false, 'Normal');
+                aaLargeResultEl.innerHTML = createResultHtml(false, 'Large');
+                aaaNormalResultEl.innerHTML = createResultHtml(false, 'Normal');
+                aaaLargeResultEl.innerHTML = createResultHtml(false, 'Large');
+                return;
+            }
+
+            // Update swatches
+            fgSwatch.style.backgroundColor = fgHex;
+            bgSwatch.style.backgroundColor = bgHex;
+
+            // Update contrast ratio
+            const ratio = getContrastRatio(fgRgb, bgRgb);
+            contrastRatioEl.textContent = `${ratio.toFixed(2)}:1`;
+
+            // Update WCAG compliance results
+            aaNormalResultEl.innerHTML = createResultHtml(ratio >= 4.5, 'Normal');
+            aaLargeResultEl.innerHTML = createResultHtml(ratio >= 3, 'Large');
+            aaaNormalResultEl.innerHTML = createResultHtml(ratio >= 7, 'Normal');
+            aaaLargeResultEl.innerHTML = createResultHtml(ratio >= 4.5, 'Large');
+        }
+
+        // --- Event Listeners ---
+
+        // Sync color picker input with hex text input and update
+        fgColorPicker.addEventListener('input', (e) => {
+            fgHexInput.value = e.target.value.toUpperCase();
+            updateContrast();
+        });
+        bgColorPicker.addEventListener('input', (e) => {
+            bgHexInput.value = e.target.value.toUpperCase();
+            updateContrast();
+        });
+
+        // Sync hex text input with color picker and update
+        fgHexInput.addEventListener('input', (e) => {
+            const hex = e.target.value;
+            if (/^#?[0-9A-F]{6}$/i.test(hex)) {
+                const sanitizedHex = hex.startsWith('#') ? hex : '#' + hex;
+                fgColorPicker.value = sanitizedHex;
+                updateContrast();
+            }
+        });
+        bgHexInput.addEventListener('input', (e) => {
+            const hex = e.target.value;
+            if (/^#?[0-9A-F]{6}$/i.test(hex)) {
+                const sanitizedHex = hex.startsWith('#') ? hex : '#' + hex;
+                bgColorPicker.value = sanitizedHex;
+                updateContrast();
+            }
+        });
+
+        // Swap colors
+        swapBtn.addEventListener('click', () => {
+            const tempHex = fgHexInput.value;
+            fgHexInput.value = bgHexInput.value;
+            bgHexInput.value = tempHex;
+
+            const tempPicker = fgColorPicker.value;
+            fgColorPicker.value = bgColorPicker.value;
+            bgColorPicker.value = tempPicker;
+
+            updateContrast();
+        });
+
+        // Eyedropper functionality
+        async function pickColor(targetHexInput, targetColorPicker) {
+            if (!window.EyeDropper) {
+                alert("Your browser doesn't support the EyeDropper API.");
+                return;
+            }
+            try {
+                const eyeDropper = new EyeDropper();
+                const result = await eyeDropper.open();
+                targetHexInput.value = result.sRGBHex.toUpperCase();
+                targetColorPicker.value = result.sRGBHex;
+                updateContrast();
+            } catch (e) {
+                console.log('EyeDropper was cancelled.');
+            }
+        }
+
+        fgPickerBtn.addEventListener('click', () => pickColor(fgHexInput, fgColorPicker));
+        bgPickerBtn.addEventListener('click', () => pickColor(bgHexInput, bgColorPicker));
+
+        // Tab switching logic
+        function switchTab(e) {
+            const clickedTab = e.currentTarget;
+
+            tabBtns.forEach(btn => btn.classList.remove('active'));
+            tabPanels.forEach(panel => panel.classList.remove('active'));
+
+            clickedTab.classList.add('active');
+            if (clickedTab === analyzerTabBtn) {
+                analyzerPanel.classList.add('active');
+            } else {
+                aboutPanel.classList.add('active');
+            }
+        }
+
+        analyzerTabBtn.addEventListener('click', switchTab);
+        aboutTabBtn.addEventListener('click', switchTab);
+
+        // --- Initial Calculation ---
+        document.addEventListener('DOMContentLoaded', updateContrast);
+
+    </script>
+</body>
+
+</html>
