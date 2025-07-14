@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Color Contrast Analyzer",
+  "name": "Simple Contrast Analyzer",
   "version": "1.0",
   "description": "An Chrome Extension created by Dizaraj Dey to analyze color contrast ratios for web accessibility (WCAG).",
   "permissions": ["storage"],
