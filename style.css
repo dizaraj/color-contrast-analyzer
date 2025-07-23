@@ -382,3 +382,23 @@ body {
 .btn-pink:hover {
     background-color: #db2777;
 }
+
+/* --- Review Tab Styles --- */
+.star-rating-container {
+    display: flex;
+    justify-content: center;
+    gap: 0.25rem;
+}
+
+.star-rating-container .star {
+    color: #f59e0b;
+    /* amber-500 */
+    transition: transform 0.15s ease-in-out;
+    display: inline-block;
+}
+
+.star-rating-container .star:hover {
+    transform: scale(1.15);
+    color: #f97316;
+    /* orange-500 */
+}

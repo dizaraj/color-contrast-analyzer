@@ -18,8 +18,13 @@ const aaaNormalResultEl = document.getElementById("aaa-normal-result");
 const aaaLargeResultEl = document.getElementById("aaa-large-result");
 
 const analyzerTabBtn = document.getElementById("analyzer-tab-btn");
+const reviewsTabBtn = document.getElementById("reviews-tab-btn");
+const supportTabBtn = document.getElementById("support-tab-btn");
 const aboutTabBtn = document.getElementById("about-tab-btn");
+
 const analyzerPanel = document.getElementById("analyzer-panel");
+const reviewsPanel = document.getElementById("reviews-panel");
+const supportPanel = document.getElementById("support-panel");
 const aboutPanel = document.getElementById("about-panel");
 
 const errorContainer = document.getElementById("error-container");
@@ -168,21 +173,30 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
 // --- Tab Logic ---
 function switchTab(e) {
   const clickedTab = e.currentTarget;
-  [analyzerTabBtn, aboutTabBtn].forEach((btn) =>
+  // Deactivate all tabs and panels
+  [analyzerTabBtn, reviewsTabBtn, supportTabBtn, aboutTabBtn].forEach((btn) =>
     btn.classList.remove("active")
   );
-  [analyzerPanel, aboutPanel].forEach((panel) =>
+  [analyzerPanel, reviewsPanel, supportPanel, aboutPanel].forEach((panel) =>
     panel.classList.remove("active")
   );
+
+  // Activate the clicked tab and corresponding panel
   clickedTab.classList.add("active");
   if (clickedTab === analyzerTabBtn) {
     analyzerPanel.classList.add("active");
+  } else if (clickedTab === reviewsTabBtn) {
+    reviewsPanel.classList.add("active");
+  } else if (clickedTab === supportTabBtn) {
+    supportPanel.classList.add("active");
   } else {
     aboutPanel.classList.add("active");
   }
 }
 
 analyzerTabBtn.addEventListener("click", switchTab);
+reviewsTabBtn.addEventListener("click", switchTab);
+supportTabBtn.addEventListener("click", switchTab);
 aboutTabBtn.addEventListener("click", switchTab);
 
 // --- Initial Setup ---

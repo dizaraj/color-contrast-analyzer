@@ -24,11 +24,16 @@
         <nav class="flex border-b border-gray-200">
             <button id="analyzer-tab-btn"
                 class="tab-btn active -mb-px px-4 py-2 text-sm font-medium text-gray-600 border-b-2 border-transparent hover:text-indigo-600 hover:border-gray-300 focus:outline-none">Analyzer</button>
+            <button id="reviews-tab-btn"
+                class="tab-btn px-4 py-2 text-sm font-medium text-gray-600 border-b-2 border-transparent hover:text-indigo-600 hover:border-gray-300 focus:outline-none">Reviews</button>
+            <button id="support-tab-btn"
+                class="tab-btn px-4 py-2 text-sm font-medium text-gray-600 border-b-2 border-transparent hover:text-indigo-600 hover:border-gray-300 focus:outline-none">Support</button>
             <button id="about-tab-btn"
                 class="tab-btn px-4 py-2 text-sm font-medium text-gray-600 border-b-2 border-transparent hover:text-indigo-600 hover:border-gray-300 focus:outline-none">About</button>
         </nav>
 
         <div>
+            <!-- Analyzer Panel -->
             <div id="analyzer-panel" class="tab-panel active">
                 <main class="space-y-4 py-1">
                     <div class="grid grid-cols-2 gap-4">
@@ -98,8 +103,76 @@
                 </section>
             </div>
 
-            <div id="about-panel" class="tab-panel py-4 space-y-4">
-                <!-- About the Developer Card -->
+            <!-- Reviews Panel -->
+            <div id="reviews-panel" class="tab-panel py-4">
+                <div class="p-4 bg-white border border-gray-200 rounded-lg space-y-4 text-center">
+                    <h3 class="text-lg font-semibold text-gray-800">Your Feedback Matters</h3>
+                    <p class="text-sm text-gray-600">
+                        User reviews are vital for improving this tool. Your feedback helps guide future updates and
+                        lets other users know if this extension is right for them.
+                    </p>
+                    <div class="star-rating-container py-2">
+                        <a href="#" class="star"><svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                </path>
+                            </svg></a>
+                        <a href="#" class="star"><svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                </path>
+                            </svg></a>
+                        <a href="#" class="star"><svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                </path>
+                            </svg></a>
+                        <a href="#" class="star"><svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                </path>
+                            </svg></a>
+                        <a href="#" class="star"><svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                </path>
+                            </svg></a>
+                    </div>
+                    <a href="https://chrome.google.com/webstore" target="_blank" class="btn btn-indigo">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.783-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z">
+                            </path>
+                        </svg>
+                        <span>Leave a Review</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Support Panel -->
+            <div id="support-panel" class="tab-panel py-4">
+                <div class="p-4 bg-white border border-gray-200 rounded-lg space-y-3">
+                    <h3 class="text-lg font-semibold text-gray-800">Support the Project</h3>
+                    <p class="text-sm text-gray-600">If you find it useful and would like to support its continued
+                        development, maintenance, and the creation of more helpful tools, please consider showing your
+                        appreciation. Your support is greatly valued!</p>
+                    <div>
+                        <a href="https://coff.ee/dizaraj" target="_blank" class="btn btn-pink">
+                            <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span>Support with a Coffee</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About Panel -->
+            <div id="about-panel" class="tab-panel py-4">
                 <div class="p-4 bg-white border border-gray-200 rounded-lg space-y-4">
                     <h3 class="text-lg font-semibold text-gray-800">About the Developer</h3>
                     <p class="text-sm text-gray-600">This extension was created by <span class="font-semibold">Dizaraj
@@ -115,25 +188,6 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                             </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Support Section Card -->
-                <div class="p-4 bg-white border border-gray-200 rounded-lg space-y-3">
-                    <h3 class="text-lg font-semibold text-gray-800">Support the Project</h3>
-                    <p class="text-sm text-gray-600">If you find it useful and would like to support its continued
-                        development, maintenance, and the creation of more helpful tools, please consider showing your
-                        appreciation. Your support is greatly valued!</p>
-                    <div>
-                        <a href="https://coff.ee/dizaraj" target="_blank" class="btn btn-pink">
-                            <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            <span>Support with a Coffee</span>
                         </a>
                     </div>
                 </div>
