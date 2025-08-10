@@ -48,7 +48,7 @@ The extension icon should now appear in your Chrome toolbar.
 This extension is built with your privacy in mind. It does not collect, store, or transmit any user data. For more details, please read the full [Privacy Policy](./PRIVACY.md).
 
 ## 💬 Support
-If you have any questions, require support, or have feedback, please feel free to reach out to the developer:
+If you have any questions, require support, or have feedback, please feel free inbox me.
 
 * **Developer:** Dizaraj Dey
 * **Email:** [dizaraj@gmail.com](mailto:dizaraj@gmail.com)
